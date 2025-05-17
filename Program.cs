@@ -38,20 +38,16 @@ namespace BDPracticWork1
                 {
                     Console.Clear();
                     WriteStatistic(_userName, _userAge, _round, _winRound);
-                    Console.WriteLine($"We will play 3 rounds. It`s {_round+1} round. Ready to play? \ny - if you want to play, n - if don`t.\n");
+                    Console.WriteLine($"We will play 3 rounds. It`s {_round+1} round. Ready to play? \ny - if you want to play, n - if don`t.");
                     choice = Console.ReadKey().KeyChar;
                     if (choice == 'y')
                     {
                         Console.Clear();
                         _round++;
-                        WriteWhoWinRound(_winRound, out _winRound);
-
-                        // var machineWeapon = (Weapon)machineWeaponNumber;
-                        // Console.WriteLine($"Machine weapon: {machineWeapon}");
-                        // var userWeapon = (Weapon)userWeaponNumber;
-                        // Console.WriteLine($"User weapon: {userWeapon}");
-
-
+                        int _machineWeaponNumber = MachineChooseWeapon();
+                        int _userWeaponNumber = UserChooseWeapon();
+                        WriteWhoWinRound(_machineWeaponNumber, _userWeaponNumber, _winRound, out _winRound);
+                        WriteBattleField(_userName, _machineWeaponNumber, _userWeaponNumber);
                     }
                     else if (choice == 'n')
                     {
@@ -61,19 +57,18 @@ namespace BDPracticWork1
                     else
                         Console.WriteLine("\nWrong answer. \ny - if you want to play, n - if don`t.");
 
-
+                    Console.WriteLine("Tap any key to play next round.");
                     Console.ReadLine();
                 } while (_round < 3);
+                
                 WriteStatistic(_userName, _userAge, _round, _winRound);
                 _toPlay = false;
                 
             }
         }
 
-        private static void WriteWhoWinRound(int winRound, out int result)
+        private static void WriteWhoWinRound(int machineWeaponNumber, int userWeaponNumber, int winRound, out int result)
         {
-            int machineWeaponNumber = MachineChooseWeapon();
-            int userWeaponNumber = UserChooseWeapon();
             if (machineWeaponNumber == 0 && userWeaponNumber == 1 || machineWeaponNumber == 1 && userWeaponNumber == 2 || machineWeaponNumber == 2 && userWeaponNumber == 0)
             {
                 Console.WriteLine("You win this round!");
@@ -87,6 +82,7 @@ namespace BDPracticWork1
             {
                 Console.WriteLine("Draw");
             }
+
             result = winRound;
         }
 
@@ -116,10 +112,16 @@ namespace BDPracticWork1
             }
             return result;
         }
-        private static void WriteBattleField(string name)
+        private static void WriteBattleField(string name, int machineWeaponNumber, int userWeaponNumber)
         {
             string machine = "Machine";
-            int totalLenght = 1 + machine.Length + 4 + name.Length + 1;
+            string threw = "threw";
+            var machineWeapon = (Weapon)machineWeaponNumber;
+            var userWeapon = (Weapon)userWeaponNumber;
+            var nameMachineWeapon = machineWeapon.ToString();
+            var nameUserWeapon = userWeapon.ToString();
+            int totalLenght = (1 + machine.Length + 1 + threw.Length + 1 + nameMachineWeapon.Length) + 4 + (1 + name.Length + 1 + threw.Length + 1 + nameUserWeapon.Length);
+            
             char[] horizontalLine = new char[totalLenght];
             for (int i = 0; i < totalLenght; i++)
             {
@@ -128,9 +130,10 @@ namespace BDPracticWork1
             foreach (var c in horizontalLine) 
                 Console.Write(c);
             Console.WriteLine();
-            Console.WriteLine($"={machine} VS {name}=");
-            foreach (var c in horizontalLine) 
+            Console.WriteLine($"={machine} {threw} {machineWeapon} VS {name} {threw} {userWeapon}=");
+            foreach (var c in horizontalLine)
                 Console.Write(c);
+            Console.WriteLine();
             
         }
         private static (string, int) AskUserData()
