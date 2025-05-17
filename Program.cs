@@ -41,7 +41,7 @@ namespace BDPracticWork1
                 if (choice == 'y')
                 {
                     Console.Clear();
-                    Console.WriteLine("Yes");
+                    WriteBattleField(_userName);
                 }
                 else if (choice == 'n')
                 {
@@ -59,6 +59,23 @@ namespace BDPracticWork1
             }
         }
 
+        private static void WriteBattleField(string name)
+        {
+            string machine = "Machine";
+            int totalLenght = 1 + machine.Length + 4 + name.Length + 1;
+            char[] horizontalLine = new char[totalLenght];
+            for (int i = 0; i < totalLenght; i++)
+            {
+                horizontalLine[i] = '=';
+            }
+            foreach (var c in horizontalLine) 
+                Console.Write(c);
+            Console.WriteLine();
+            Console.WriteLine($"={machine} VS {name}=");
+            foreach (var c in horizontalLine) 
+                Console.Write(c);
+            
+        }
         private static (string, int) AskUserData()
         {
             Console.WriteLine("Enter your name:");
