@@ -34,37 +34,59 @@ namespace BDPracticWork1
 
             while (_toPlay)
             {
-                Console.Clear();
-                WriteStatistic(_userName, _userAge, _round, _winRound);
-                Console.WriteLine("Play a round up to 2 wins. Ready? \ny - if you want to play, n - if don`t.\n");
-                choice = Console.ReadKey().KeyChar;
-                if (choice == 'y')
+                while (_round < 3)
                 {
                     Console.Clear();
-                    int machineWeaponNumber = MachineChooseWeapon();
-                    int userWeaponNumber = UserChooseWeapon();
+                    WriteStatistic(_userName, _userAge, _round, _winRound);
+                    Console.WriteLine("We will play 3 rounds. Ready? \ny - if you want to play, n - if don`t.\n");
+                    choice = Console.ReadKey().KeyChar;
+                    if (choice == 'y')
+                    {
+                        Console.Clear();
+                        _round++;
+                        WriteWhoWinRound(_winRound, out _winRound);
 
-                    var machineWeapon = (Weapon)machineWeaponNumber;
-                    Console.WriteLine($"Machine weapon: {machineWeapon}");
-                    var userWeapon = (Weapon)userWeaponNumber;
-                    Console.WriteLine($"User weapon: {userWeapon}");
+                        // var machineWeapon = (Weapon)machineWeaponNumber;
+                        // Console.WriteLine($"Machine weapon: {machineWeapon}");
+                        // var userWeapon = (Weapon)userWeaponNumber;
+                        // Console.WriteLine($"User weapon: {userWeapon}");
 
 
+                    }
+                    else if (choice == 'n')
+                    {
+                        Console.WriteLine("\nOk. when it`s over. Bye!");
+                        _toPlay = false;
+                    }
+                    else
+                        Console.WriteLine("\nWrong answer. \ny - if you want to play, n - if don`t.");
+                
+                    
+                    Console.ReadLine();
                 }
-                else if (choice == 'n')
-                {
-                    Console.WriteLine("\nOk. when it`s over. Bye!");
-                    _toPlay = false;
-                }
-                else
-                    Console.WriteLine("\nWrong answer. \ny - if you want to play, n - if don`t.");
+                _toPlay = false;
                 
-                
-                
-                
-                
-                Console.ReadLine();
             }
+        }
+
+        private static void WriteWhoWinRound(int winRound, out int result)
+        {
+            int machineWeaponNumber = MachineChooseWeapon();
+            int userWeaponNumber = UserChooseWeapon();
+            if (machineWeaponNumber == 0 && userWeaponNumber == 1 || machineWeaponNumber == 1 && userWeaponNumber == 2 || machineWeaponNumber == 2 && userWeaponNumber == 0)
+            {
+                Console.WriteLine("You win this round!");
+                winRound++;
+            }
+            else if (machineWeaponNumber == 0 && userWeaponNumber == 2 || machineWeaponNumber == 1 && userWeaponNumber == 0 || machineWeaponNumber == 2 && userWeaponNumber == 1)
+            {
+                Console.WriteLine("You lose this round!");
+            }
+            else
+            {
+                Console.WriteLine("Draw");
+            }
+            result = winRound;
         }
 
         private static int MachineChooseWeapon()
