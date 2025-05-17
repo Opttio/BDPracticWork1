@@ -34,11 +34,11 @@ namespace BDPracticWork1
 
             while (_toPlay)
             {
-                while (_round < 3)
+                do
                 {
                     Console.Clear();
                     WriteStatistic(_userName, _userAge, _round, _winRound);
-                    Console.WriteLine("We will play 3 rounds. Ready? \ny - if you want to play, n - if don`t.\n");
+                    Console.WriteLine($"We will play 3 rounds. It`s {_round+1} round. Ready to play? \ny - if you want to play, n - if don`t.\n");
                     choice = Console.ReadKey().KeyChar;
                     if (choice == 'y')
                     {
@@ -60,10 +60,11 @@ namespace BDPracticWork1
                     }
                     else
                         Console.WriteLine("\nWrong answer. \ny - if you want to play, n - if don`t.");
-                
-                    
+
+
                     Console.ReadLine();
-                }
+                } while (_round < 3);
+                WriteStatistic(_userName, _userAge, _round, _winRound);
                 _toPlay = false;
                 
             }
