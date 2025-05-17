@@ -84,6 +84,7 @@ namespace BDPracticWork1
                         _round = 0;
                         _winRound = 0;
                         _loseRound = 0;
+                        break;
                     }
                     else if (choiceNewBattle == 'n')
                     {
@@ -91,9 +92,7 @@ namespace BDPracticWork1
                         _toPlay = false;
                     }
                     else
-                    {
-                        Console.WriteLine("\n I don`t know this answer. Try again!");
-                    }
+                        continue;
                 }
 
             }
