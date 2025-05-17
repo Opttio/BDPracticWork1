@@ -34,7 +34,7 @@ namespace BDPracticWork1
 
             while (_toPlay)
             {
-                do
+                while (_round < 3)
                 {
                     Console.Clear();
                     WriteStatistic(_userName, _userAge, _round, _winRound);
@@ -53,13 +53,14 @@ namespace BDPracticWork1
                     {
                         Console.WriteLine("\nOk. when it`s over. Bye!");
                         _toPlay = false;
+                        break;
                     }
                     else
                         Console.WriteLine("\nWrong answer. \ny - if you want to play, n - if don`t.");
 
                     Console.WriteLine("Tap any key to play next round.");
                     Console.ReadLine();
-                } while (_round < 3);
+                }
                 
                 WriteStatistic(_userName, _userAge, _round, _winRound);
                 _toPlay = false;
@@ -102,13 +103,17 @@ namespace BDPracticWork1
             bool askWeapon = true;
             while (askWeapon)
             {
-                if (int.TryParse(Console.ReadLine(), out int resultData) && resultData >= 0 && resultData < 3)
+                if (int.TryParse(Console.ReadKey().KeyChar.ToString(), out int resultData) && resultData >= 0 && resultData < 3)
                 {
+                    Console.WriteLine();
                     result = resultData;
                     askWeapon = false;
                 }
                 else
+                {
+                    Console.WriteLine();
                     Console.WriteLine("I don`t know this weapon. Try again.");
+                }
             }
             return result;
         }
@@ -159,7 +164,7 @@ namespace BDPracticWork1
         private static void WriteStatistic(string name, int age, int round, int winRound)
         {
             Console.WriteLine($"{name}, {age} years old.");
-            Console.WriteLine($"Number of games played: {round}");
+            Console.WriteLine($"Number of rounds played: {round}");
             Console.WriteLine($"Winning round: {winRound}");
         }
     }
