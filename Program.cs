@@ -41,7 +41,15 @@ namespace BDPracticWork1
                 if (choice == 'y')
                 {
                     Console.Clear();
-                    WriteBattleField(_userName);
+                    int machineWeaponNumber = MachineChooseWeapon();
+                    int userWeaponNumber = UserChooseWeapon();
+
+                    var machineWeapon = (Weapon)machineWeaponNumber;
+                    Console.WriteLine($"Machine weapon: {machineWeapon}");
+                    var userWeapon = (Weapon)userWeaponNumber;
+                    Console.WriteLine($"User weapon: {userWeapon}");
+
+
                 }
                 else if (choice == 'n')
                 {
@@ -59,6 +67,32 @@ namespace BDPracticWork1
             }
         }
 
+        private static int MachineChooseWeapon()
+        {
+            Random random = new Random();
+            return random.Next(0, 3);
+        }
+
+        private static int UserChooseWeapon()
+        {
+            Console.WriteLine("Choose your weapon:");
+            Console.WriteLine($"0 it`s {Weapon.Paper}");
+            Console.WriteLine($"1 it`s {Weapon.Scissors}");
+            Console.WriteLine($"2 it`s {Weapon.Stone}");
+            int result = 0;
+            bool askWeapon = true;
+            while (askWeapon)
+            {
+                if (int.TryParse(Console.ReadLine(), out int resultData) && resultData >= 0 && resultData < 3)
+                {
+                    result = resultData;
+                    askWeapon = false;
+                }
+                else
+                    Console.WriteLine("I don`t know this weapon. Try again.");
+            }
+            return result;
+        }
         private static void WriteBattleField(string name)
         {
             string machine = "Machine";
