@@ -1,0 +1,6 @@
+D:\VartoUnityGameDeveloper\01_BaseCoding\01_BC_Scripts\BDPracticWork1\BDPracticWork1\bin\Debug\BDPracticWork1.exe
+D:\VartoUnityGameDeveloper\01_BaseCoding\01_BC_Scripts\BDPracticWork1\BDPracticWork1\bin\Debug\BDPracticWork1.pdb
+D:\VartoUnityGameDeveloper\01_BaseCoding\01_BC_Scripts\BDPracticWork1\BDPracticWork1\obj\Debug\BDPracticWork1.csproj.AssemblyReference.cache
+D:\VartoUnityGameDeveloper\01_BaseCoding\01_BC_Scripts\BDPracticWork1\BDPracticWork1\obj\Debug\BDPracticWork1.csproj.CoreCompileInputs.cache
+D:\VartoUnityGameDeveloper\01_BaseCoding\01_BC_Scripts\BDPracticWork1\BDPracticWork1\obj\Debug\BDPracticWork1.exe
+D:\VartoUnityGameDeveloper\01_BaseCoding\01_BC_Scripts\BDPracticWork1\BDPracticWork1\obj\Debug\BDPracticWork1.pdb
